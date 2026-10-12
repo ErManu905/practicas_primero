@@ -48,30 +48,33 @@ function finCabecera()
 <?php   
 }
 
-function inicioCuerpo($cabecera)
+function inicioCuerpo($cabecera, $ubicacion = "Inicio")
 {
     global $acceso;
-
 ?>
     <body>
         <div id="documento">
-        
+
             <header>
-                <h1 id="titulo"><?php echo $cabecera;?></h1>
+                <h1 id="titulo"><?php echo $cabecera; ?></h1>
             </header>
-            
+
             <div id="barraLogin">
-                
             </div>
+
             <div id="barraMenu">
                 <ul>
                     <li><a href="/index.php">Inicio</a></li>
-                 </ul> 
-                
+                    <li><a href="/aplicacion/relacion1/index.php">Relación 1</a></li>
+                </ul>
             </div>
-            
+
+            <div id="barraUbicacion">
+                <?php echo $ubicacion; ?>
+            </div>
+
             <div>
-<?php   
+<?php
 }
 
 function finCuerpo()

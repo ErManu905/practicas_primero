@@ -67,10 +67,6 @@ body {
     
 }
 
-.tabla tr.impar{
-    
-}
-
 #pie{
     background-color: #81e714;
     color: blue;
@@ -90,4 +86,19 @@ body {
     color:red;
     border:thin solid red;
     padding:5px;
+}
+
+#barraMenu ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    padding: 10px;
+    margin: 0;
+}
+
+#barraUbicacion {
+    padding: 10px;
+    font-size: 14px;
+    background-color: #eeeeee;
+    margin-bottom: 15px;
 }
