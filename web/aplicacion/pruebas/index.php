@@ -1,25 +1,40 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
-//controlador
-//dibuja la plantilla de la vista
-inicioCabecera("APLICACION PRIMER TRIMESTRE");
+
+// Parte de la vista
+inicioCabecera("INDEX");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION");
-cuerpo(); //llamo a la vista
-finCuerpo();
-// **********************************************************
 
-//vista
+inicioCuerpo("2DAW APLICACION");
+cuerpo();
+finCuerpo();
+
+// Cabecera por defecto
 function cabecera() {}
-//vista
+
+// Función para los contenidos del cuerpo
 function cuerpo()
 {
 ?>
     <br><br>
-    Elemento de pruebas
-    <br><br>
-    <a href="basicas.php">Funcionamiento básico</a>
+    <h2>Ejercicios de PHP</h2>
+    <br>
 
+    <a href="ejercicio1.php">Ejercicio 1</a>
+    <br><br>
+    <a href="ejercicio2.php">Ejercicio 2</a>
+    <br><br>
+    <a href="ejercicio3.php">Ejercicio 3</a>
+    <br><br>
+    <a href="ejercicio4.php">Ejercicio 4</a>
+    <br><br>
+    <a href="ejercicio5.php">Ejercicio 5</a>
+    <br><br>
+    <a href="ejercicio6.php">Ejercicio 6</a>
+    <br><br>
+    <a href="ejercicio7.php">Ejercicio 7</a>
+    <br><br>
 <?php
 }
+?>
