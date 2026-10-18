@@ -1,4 +1,3 @@
-
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 
@@ -16,7 +15,7 @@ TEXTO;
 // Se guardan unas cuantas expresiones regulares en variables
 $patronEtiqueta = "/<[^>]+>/";
 $patronNumero = "/[0-9]+/";
-$patronEmail = "/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/";
+$patronEmail = "/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}/";
 
 // Se busca una etiqueta HTML siguiendo el patrón pre-establecido
 $resultadoEtiqueta = array();
@@ -72,7 +71,12 @@ function cuerpo($datos)
             <?php echo htmlspecialchars($datos["etiqueta"][0][0], ENT_QUOTES, "UTF-8"); ?>
         </p>
         <p>Posición:
-            <?php echo $datos["etiqueta"][0][1]; ?>
+            <?php
+            echo mb_strlen(
+                mb_strcut($datos["cadena"], 0, $datos["etiqueta"][0][1], "UTF-8"),
+                "UTF-8"
+            );
+            ?>
         </p>
         <?php
     } else {
@@ -85,10 +89,15 @@ function cuerpo($datos)
     if (count($datos["numero"]) > 0) {
         ?>
         <p>Elemento encontrado:
-            <?php echo $datos["numero"][0][0]; ?>
+            <?php echo htmlspecialchars($datos["numero"][0][0], ENT_QUOTES, "UTF-8"); ?>
         </p>
         <p>Posición:
-            <?php echo $datos["numero"][0][1]; ?>
+            <?php
+            echo mb_strlen(
+                mb_strcut($datos["cadena"], 0, $datos["numero"][0][1], "UTF-8"),
+                "UTF-8"
+            );
+            ?>
         </p>
         <?php
     } else {
@@ -104,7 +113,12 @@ function cuerpo($datos)
             <?php echo htmlspecialchars($datos["email"][0][0], ENT_QUOTES, "UTF-8"); ?>
         </p>
         <p>Posición:
-            <?php echo $datos["email"][0][1]; ?>
+            <?php
+            echo mb_strlen(
+                mb_strcut($datos["cadena"], 0, $datos["email"][0][1], "UTF-8"),
+                "UTF-8"
+            );
+            ?>
         </p>
         <?php
     } else {

@@ -6,7 +6,7 @@ inicioCabecera("INDEX");
 cabecera();
 finCabecera();
 
-inicioCuerpo("2DAW APLICACION", "Inicio");
+inicioCuerpo("2DAW APLICACION", "Inicio > Relación 1");
 cuerpo();
 finCuerpo();
 

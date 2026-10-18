@@ -19,11 +19,10 @@ $caracter = substr($cadena, $i, 1);
 */
 
 // Pero esta opción SI es válida para caracteres UTF-8:
-$caracter = mb_substr($cadena, $i, 1, "UTF-8");
-
 
 for ($i = 0; $i < $longitud; $i++) {
-    $caracteres[] = mb_substr($cadena, $i, 1, "UTF-8");
+    $caracter = mb_substr($cadena, $i, 1, "UTF-8");
+    $caracteres[] = $caracter;
 }
 
 
