@@ -28,7 +28,7 @@ $array3 = [1 => "valor uno", 16 => "valor dieciseis", 54 => "valor cincuenta y c
 inicioCabecera("ARRAYS");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION");
+inicioCuerpo("2DAW APLICACION", "Inicio > Relación 1 > Ejercicio 3");
 
 
 // Los arrays se pasarán como parámetros al cuerpo

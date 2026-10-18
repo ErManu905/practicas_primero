@@ -2,9 +2,8 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 
-// Controlador
-
-// Cadena de varias líneas usando HEREDOC
+// Parte del controlador
+// Se crea una cadena de varias líneas usando HEREDOC
 $cadena = <<<TEXTO
 <h1>Mi página web</h1>
 Número de alumnos: 25
@@ -14,24 +13,24 @@ Precio del producto: 125
 Correo de contacto: prueba123@correo.es
 TEXTO;
 
-// Expresiones regulares
+// Se guardan unas cuantas expresiones regulares en variables
 $patronEtiqueta = "/<[^>]+>/";
 $patronNumero = "/[0-9]+/";
 $patronEmail = "/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/";
 
-// Buscar una etiqueta HTML
+// Se busca una etiqueta HTML siguiendo el patrón pre-establecido
 $resultadoEtiqueta = array();
 preg_match($patronEtiqueta, $cadena, $resultadoEtiqueta, PREG_OFFSET_CAPTURE);
 
-// Buscar un número
+// Se busca un número siguiendo el patrón pre-establecido
 $resultadoNumero = array();
 preg_match($patronNumero, $cadena, $resultadoNumero, PREG_OFFSET_CAPTURE);
 
-// Buscar un correo electrónico
+// Se busca un correo electrónico siguiendo el patrón pre-establecido
 $resultadoEmail = array();
 preg_match($patronEmail, $cadena, $resultadoEmail, PREG_OFFSET_CAPTURE);
 
-// Datos para la vista
+// Se pasan las cadenas creadas a un array que mandaremos por la vista
 $datos = array(
     "cadena" => $cadena,
     "etiqueta" => $resultadoEtiqueta,
@@ -39,16 +38,16 @@ $datos = array(
     "email" => $resultadoEmail
 );
 
-// Plantilla
-inicioCabecera("APLICACION PRIMER TRIMESTRE");
+// Parte de la vista
+inicioCabecera("PRUEBAS CON EXPRESIONES REGULARES");
 cabecera();
 finCabecera();
 
-inicioCuerpo("2DAW APLICACION", "Inicio > Relación 1 > Ejercicio 5");
+inicioCuerpo("2DAW APLICACION", "Inicio > Relación 2 > Ejercicio 5");
 cuerpo($datos);
 finCuerpo();
 
-// Vista
+// Parte de la cabecera
 function cabecera()
 {
     ?>
@@ -56,6 +55,7 @@ function cabecera()
     <?php
 }
 
+// Parte del cuerpo
 function cuerpo($datos)
 {
     ?>

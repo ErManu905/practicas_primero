@@ -7,7 +7,7 @@ include_once(dirname(__FILE__) . "/../../cabecera.php");
 inicioCabecera("MOSTRAR FUNCIONAMIENTO FECHAS");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION");
+inicioCuerpo("2DAW APLICACION", "Inicio > Relación 1 > Ejercicio 7");
 cuerpo();
 finCuerpo();
 

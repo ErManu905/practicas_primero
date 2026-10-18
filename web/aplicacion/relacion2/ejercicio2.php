@@ -1,23 +1,24 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 
-// Controlador
+// Parte del controlador
+// Cadena usada para la página
 $cadena = "Está la niña en casa";
 
-// 1. Separar cada carácter usando mb_substr
+// Primera prueba: separar cada carácter usando mb_substr
 $caracteres = array();
 $longitud = mb_strlen($cadena, "UTF-8");
 
 
 /*
-// NO válido para recorrer correctamente todos los caracteres UTF-8:
+// Esta opción NO es válida para recorrer correctamente todos los caracteres UTF-8:
 $caracter = $cadena[$i];
 
-// NO válido para recorrer correctamente todos los caracteres UTF-8:
+// Esta opción TAMPOCO es válida para recorrer correctamente todos los caracteres UTF-8:
 $caracter = substr($cadena, $i, 1);
 */
 
-// Válido para caracteres UTF-8:
+// Pero esta opción SI es válida para caracteres UTF-8:
 $caracter = mb_substr($cadena, $i, 1, "UTF-8");
 
 
@@ -25,7 +26,8 @@ for ($i = 0; $i < $longitud; $i++) {
     $caracteres[] = mb_substr($cadena, $i, 1, "UTF-8");
 }
 
-// 2. Cadena inversa, índices negativos y mayúsculas/minúsculas
+
+//Segunda prueba: cadena inversa, índices negativos y pasar caráctares a mayúsculas/minúsculas
 $inverso = array();
 
 for ($i = 0; $i < $longitud; $i++) {
@@ -40,10 +42,10 @@ for ($i = 0; $i < $longitud; $i++) {
     $inverso[] = $caracter;
 }
 
-// 3. Separar la cadena por la letra a
+// Tercera prueba: Separar una cadena por una letra especificada
 $partes = explode("a", $cadena);
 
-// 4. Cambiar el espacio después de "niña" por "/mujer "
+// Cuarta prueba: cambiar el espacio después de "niña" por "/mujer "
 $posicion = mb_strpos($cadena, "niña", 0, "UTF-8");
 
 if ($posicion !== false) {
@@ -57,7 +59,7 @@ if ($posicion !== false) {
     $cadenaModificada = $cadena;
 }
 
-// Datos para la vista
+// Se pasan las cadenas creadas a un array que mandaremos por la vista
 $datos = array(
     "cadena" => $cadena,
     "caracteres" => $caracteres,
@@ -66,16 +68,16 @@ $datos = array(
     "modificada" => $cadenaModificada
 );
 
-// Plantilla
-inicioCabecera("APLICACION PRIMER TRIMESTRE");
+// Parte de la vista
+inicioCabecera("MANEJO DE CADENAS");
 cabecera();
 finCabecera();
 
-inicioCuerpo("2DAW APLICACION", "Inicio > Relación 1 > Ejercicio 2");
+inicioCuerpo("2DAW APLICACION", "Inicio > Relación 2 > Ejercicio 2");
 cuerpo($datos);
 finCuerpo();
 
-// Vista
+// Parte de la cabecera
 function cabecera()
 {
     ?>
@@ -83,6 +85,7 @@ function cabecera()
     <?php
 }
 
+// Parte del cuerpo
 function cuerpo($datos)
 {
     ?>

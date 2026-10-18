@@ -1,32 +1,32 @@
-
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 
-// Controlador
+// Parte del controlador
+// Variables para probar las cadenas
 $nombre = "Manuel";
 $edad = 20;
 
-// Cadenas con comillas simples y dobles
+// Pruebas con cadenas con comillas simples y dobles
 $cadena1 = 'Hola, me llamo Manuel. Tengo \'20\' años.';
-$cadena2 = "Hola, $nombre. Tienes $edad años.";
+$cadena2 = "Hola, me llamo $nombre. Tengo $edad años.";
 
-// Cadena HEREDOC: interpreta las variables
+// Cadena HEREDOC: este tipo de cadena interpreta las variables
 $cadena3 = <<<TEXTO
-Hola, $nombre.
-Tienes $edad años.
+Hola, soy $nombre.
+Tengo $edad años.
 Caracteres especiales: á, é, ñ.
 Etiquetas HTML: <h1>Hola</h1> y <p>Esto es un párrafo.</p>
 TEXTO;
 
-// Cadena NOWDOC: no interpreta las variables
+// Cadena NOWDOC: este tipo de cadena NO interpreta las variables
 $cadena4 = <<<'TEXTO'
-Hola, $nombre.
-Tienes $edad años.
+Hola, soy $nombre.
+Tengo $edad años.
 Caracteres especiales: á, é, ñ.
 Etiquetas HTML: <h1>Hola</h1> y <p>Esto es un párrafo.</p>
 TEXTO;
 
-// Datos que se pasan a la vista
+// Se pasan las cadenas creadas a un array que mandaremos por la vista
 $cadenas = array(
     "Comillas simples" => $cadena1,
     "Comillas dobles" => $cadena2,
@@ -34,16 +34,16 @@ $cadenas = array(
     "NOWDOC" => $cadena4
 );
 
-// Dibuja la plantilla
-inicioCabecera("APLICACION PRIMER TRIMESTRE");
+// Parte de la vista
+inicioCabecera("PRUEBAS DE CADENAS");
 cabecera();
 finCabecera();
 
-inicioCuerpo("2DAW APLICACION", "Inicio > Relación 1 > Ejercicio 1");
+inicioCuerpo("2DAW APLICACION", "Inicio > Relación 2 > Ejercicio 1");
 cuerpo($cadenas);
 finCuerpo();
 
-// Vista
+// Parte de la cabecera
 function cabecera()
 {
     ?>
@@ -51,6 +51,7 @@ function cabecera()
     <?php
 }
 
+// Parte del cuerpo
 function cuerpo($cadenas)
 {
     ?>

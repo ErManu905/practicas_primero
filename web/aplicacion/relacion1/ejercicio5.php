@@ -17,7 +17,7 @@ $vector[56] = 23;
 inicioCabecera("MOSTRAR TIPO DEL CONTENIDO");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION");
+inicioCuerpo("2DAW APLICACION", "Inicio > Relación 1 > Ejercicio 5");
 
 // Los arrays se pasarán como parámetros al cuerpo
 cuerpo($vector);

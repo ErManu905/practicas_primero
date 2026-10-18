@@ -8,7 +8,7 @@ $vector = array("primera" => 12.56, 24 => true, 67 => 23.76);
 inicioCabecera("SIMULAR FOREACH CON CLAVE-VALOR");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION");
+inicioCuerpo("2DAW APLICACION", "Inicio > Relación 1 > Ejercicio 6");
 
 // Los arrays se pasarán como parámetros al cuerpo
 cuerpo($vector);

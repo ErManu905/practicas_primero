@@ -1,9 +1,8 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 
-// Controlador
-
-// a) Array con todos los caracteres permitidos
+// Parte del controlador
+// Este array determinará todos los caracteres permitidos
 $caracteres = array();
 
 for ($i = 0; $i < 26; $i++) {
@@ -18,7 +17,7 @@ for ($i = 0; $i < 10; $i++) {
     $caracteres[] = chr(48 + $i); // Números
 }
 
-// Generar cadena aleatoria de 20 caracteres
+// Se generará una cadena aleatoria de 20 caracteres
 $cadena1 = "";
 
 for ($i = 0; $i < 20; $i++) {
@@ -27,7 +26,7 @@ for ($i = 0; $i < 20; $i++) {
 }
 
 
-// b) Generar caracteres a partir del código ASCII
+// En esta cadena, se generarán caracteres a partir del código ASCII
 $cadena2 = "";
 
 for ($i = 0; $i < 20; $i++) {
@@ -42,23 +41,23 @@ for ($i = 0; $i < 20; $i++) {
     $cadena2 .= chr($codigo);
 }
 
-// Datos para la vista
+// Se pasan las cadenas creadas a un array que mandaremos por la vista
 $datos = array(
     "cadena1" => $cadena1,
     "cadena2" => $cadena2,
     "caracteres" => $caracteres
 );
 
-// Plantilla
-inicioCabecera("APLICACION PRIMER TRIMESTRE");
+// Parte de la vista
+inicioCabecera("CADENAS ALEATORIAMENTE GENERADAS");
 cabecera();
 finCabecera();
 
-inicioCuerpo("2DAW APLICACION", "Inicio > Relación 1 > Ejercicio 3");
+inicioCuerpo("2DAW APLICACION", "Inicio > Relación 2 > Ejercicio 3");
 cuerpo($datos);
 finCuerpo();
 
-// Vista
+// Parte de la cabecera
 function cabecera()
 {
     ?>
@@ -66,6 +65,7 @@ function cabecera()
     <?php
 }
 
+// Parte del cuerpo
 function cuerpo($datos)
 {
     ?>

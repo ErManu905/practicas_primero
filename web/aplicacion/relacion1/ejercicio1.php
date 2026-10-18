@@ -6,7 +6,7 @@ include_once(dirname(__FILE__) . "/../../cabecera.php");
 inicioCabecera("FUNCIONES MATEMATICAS");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION");
+inicioCuerpo("2DAW APLICACION", "Inicio > Relación 1 > Ejercicio 1");
 cuerpo();
 finCuerpo();
 function cabecera() {}

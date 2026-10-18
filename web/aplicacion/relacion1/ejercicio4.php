@@ -24,7 +24,7 @@ for ($i = 1; $i <= FILAS; $i++) {
 inicioCabecera("PIRAMIDE");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION");
+inicioCuerpo("2DAW APLICACION", "Inicio > Relación 1 > Ejercicio 4");
 
 // Los arrays se pasarán como parámetros al cuerpo
 cuerpo($array1, $array2);

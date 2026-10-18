@@ -42,7 +42,7 @@ while ($i < N)
 inicioCabecera("TIRO DE DADOS");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION");
+inicioCuerpo("2DAW APLICACION", "Inicio > Relación 1 > Ejercicio 2");
 
 // los arrays se pasarán como parámetro al cuerpo
 cuerpo($tiradas, $veces);
