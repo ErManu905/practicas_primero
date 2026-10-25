@@ -5,7 +5,7 @@ include_once(dirname(__FILE__) . "/libreria.php");
 
 // Parte del controlador
 
-// Primera prueba: contar llamadas y actualizar el array
+// En esta primera prueba, contaremos llamadas y actualizaremos el array como corresponda
 $vector = array();
 $numero = 0;
 $resultado1 = array();
@@ -18,18 +18,18 @@ $resultado1[] = array("vector" => $vector, "numero" => $numero);
 
 $resultadoError = cuentaVeces($vector, "2daw", 5, $numero);
 
-// Segunda prueba: generar cadenas
+// En esta segunda prueba, probaremos a generar cadenas
 $cadena1 = generarCadena(7);
 $cadena2 = generarCadena();
 $cadenaError = generarCadena(0);
 
-// Tercera prueba: operaciones
+// En esta tercera prueba, probaremos a hacer unas cuantas operaciones
 $resultadoSuma = operaciones(1, 2, 5, 7, 3, 4);
 $resultadoResta = operaciones(2, 20, 5, 3);
 $resultadoMultiplicacion = operaciones(3, 2, 3, 4);
 $resultadoAlternativo = operaciones(5, 2, 5, 7, 3, 4);
 
-// Cuarta prueba: devolver suma y producto
+// En esta cuarta prueba, comprobaremos que se devuelvan la suma y el producto
 $valor1 = 7;
 $producto1 = devuelve($valor1, 4, 10);
 
@@ -42,16 +42,16 @@ $producto3 = devuelve($valor3, 4);
 $valor4 = 7;
 $producto4 = devuelve($valor4, tercero: 5);
 
-// Quinta prueba: variable función
+// En esta quinta prueba, probaremos a hacer variables que guardan como dato el resultado de una función
 $operacionCorrecta = hacerOperacion("resta", 3, 1);
 $operacionIncorrecta = hacerOperacion("division", 3, 1);
 
-// Sexta prueba: funciones flecha
+// En esta sexta prueba, enviaremos los resultados de las funciones a través de flechas para hacer operaciones más complejas
 $flecha1 = llamadaAFuncion(1, 2, fn($a, $b) => $a + $b);
 $flecha2 = llamadaAFuncion(5, 3, fn($a, $b) => $a - $b);
 $flecha3 = llamadaAFuncion(4, 6, fn($a, $b) => $a * $b);
 
-// Sexta prueba: funciones anónimas asignadas a variables
+// En esta segunda parte de la sexta prueba, crearemos funciones anónimas asignadas a variables, las cuales deberían dar el mismo resultado
 $funcionSuma = function ($a, $b) {
     return $a + $b;
 };
@@ -68,11 +68,11 @@ $anonima1 = llamadaAFuncion(1, 2, $funcionSuma);
 $anonima2 = llamadaAFuncion(5, 3, $funcionResta);
 $anonima3 = llamadaAFuncion(4, 6, $funcionMultiplicacion);
 
-// Séptima prueba: ordenar por longitud
+// En esta séptima prueba, ordenaremos los diferentes arrays por longitud
 $vectorOrdenar = array("uno", "grande", "caminos", "a");
 ordenar($vectorOrdenar);
 
-// Se pasan los resultados a la vista
+// Ahora, pasamos todos los resultados anteriores a la vista
 $datos = array(
     "vector" => $vector,
     "numero" => $numero,

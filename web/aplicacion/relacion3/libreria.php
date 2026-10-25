@@ -2,7 +2,7 @@
 <?php
 
 /**
- * Añade un valor a un array asociativo y cuenta las llamadas correctas.
+ * Esta función añade un valor a un array asociativo y cuenta las llamadas correctas.
  *
  * @param array &$vector Array que se actualizará.
  * @param string $posicion Clave donde se guardará el valor.
@@ -26,7 +26,7 @@ function cuentaVeces(array &$vector, string $posicion, int $valor, int &$numero)
 }
 
 /**
- * Genera una cadena aleatoria de letras y números.
+ * Esta función genera una cadena aleatoria de letras y números.
  *
  * @param int $longitud Longitud de la cadena.
  * @return string|false Cadena generada o false si la longitud no es válida.
@@ -49,7 +49,7 @@ function generarCadena(int $longitud = 10): string|false
 }
 
 /**
- * Realiza una operación con todos los operandos recibidos.
+ * Esta función realiza una operación con todos los operandos recibidos.
  *
  * @param int $tipo Tipo de operación.
  * @param int|float ...$operandos Números sobre los que se opera.
@@ -100,7 +100,7 @@ function operaciones(int $tipo, int|float ...$operandos): int|float|false
 }
 
 /**
- * Suma los tres valores y devuelve su producto.
+ * Esta función suma los tres valores pasados por parámetro y devuelve el producto de estos.
  *
  * @param int &$valor Primer valor, que se actualizará con la suma.
  * @param int $segundo Segundo valor, por defecto 4.
@@ -116,7 +116,7 @@ function devuelve(int &$valor, int $segundo = 4, int $tercero = 10): int
 }
 
 /**
- * Suma dos números enteros.
+ * Esta función suma dos números enteros.
  *
  * @param int $a Primer número.
  * @param int $b Segundo número.
@@ -128,7 +128,7 @@ function suma(int $a, int $b): int
 }
 
 /**
- * Resta dos números enteros.
+ * Esta función resta dos números enteros.
  *
  * @param int $a Primer número.
  * @param int $b Segundo número.
@@ -140,7 +140,7 @@ function resta(int $a, int $b): int
 }
 
 /**
- * Multiplica dos números enteros.
+ * Esta función multiplica dos números enteros.
  *
  * @param int $a Primer número.
  * @param int $b Segundo número.
@@ -152,7 +152,7 @@ function multiplicacion(int $a, int $b): int
 }
 
 /**
- * Ejecuta una operación utilizando una variable función.
+ * Esta función ejecuta una operación usando una variable de función.
  *
  * @param string $operacion Nombre de la operación.
  * @param int $a Primer operando.
@@ -175,7 +175,7 @@ function hacerOperacion(string $operacion, int $a, int $b): int|false
 }
 
 /**
- * Llama a una función callback con dos operandos.
+ * Esta función llama a una función de callback con dos operandos.
  *
  * @param int $a Primer operando.
  * @param int $b Segundo operando.
@@ -188,7 +188,7 @@ function llamadaAFuncion(int $a, int $b, callable $callback): int
 }
 
 /**
- * Ordena un array de mayor a menor según la longitud de sus elementos.
+ * Esta función ordena un array de mayor a menor según la longitud de sus elementos.
  *
  * @param array &$vector Array que se ordenará.
  * @return void
