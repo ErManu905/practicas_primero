@@ -5,7 +5,7 @@
 interface IFabricable
 {
     /**
-     * Devuelve los pasos necesarios para fabricar el elemento.
+     * Esta función devuelve los pasos necesarios para fabricar el elemento.
      *
      * @return string Pasos de fabricación.
      */
@@ -13,7 +13,7 @@ interface IFabricable
 
 
     /**
-     * Devuelve el método de reciclado del elemento.
+     * Esta función devuelve el método de reciclado del elemento.
      *
      * @return string Método de reciclado.
      */

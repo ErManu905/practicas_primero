@@ -1,6 +1,6 @@
 <?php
 /**
- * Clase que permite trabajar con propiedades dinámicas e iterar sobre ellas.
+ * Esta clase permite trabajar con propiedades dinámicas e iterar sobre ellas.
  */
 class ClaseMisPropiedades implements IteratorAggregate
 {
@@ -13,7 +13,7 @@ class ClaseMisPropiedades implements IteratorAggregate
 
 
     /**
-     * Permite consultar las propiedades dinámicas.
+     * Esta función permite consultar las propiedades dinámicas.
      *
      * @param string $nombre Nombre de la propiedad.
      * @return mixed Valor de la propiedad.
@@ -29,8 +29,7 @@ class ClaseMisPropiedades implements IteratorAggregate
 
 
     /**
-     * Permite crear propiedades dinámicas.
-     *
+     * Esta función permite crear propiedades dinámicas.
      * No permite modificar las propiedades privadas de la clase.
      *
      * @param string $nombre Nombre de la propiedad.
@@ -48,7 +47,7 @@ class ClaseMisPropiedades implements IteratorAggregate
 
 
     /**
-     * Comprueba si existe una propiedad dinámica.
+     * Esta función comprueba si existe una propiedad dinámica.
      *
      * @param string $nombre Nombre de la propiedad.
      * @return bool True si existe y false si no existe.
@@ -60,7 +59,7 @@ class ClaseMisPropiedades implements IteratorAggregate
 
 
     /**
-     * Elimina una propiedad dinámica.
+     * Esta función elimina una propiedad dinámica.
      *
      * @param string $nombre Nombre de la propiedad.
      * @return void
@@ -76,7 +75,7 @@ class ClaseMisPropiedades implements IteratorAggregate
 
 
     /**
-     * Devuelve un iterador con todas las propiedades del objeto.
+     * Esta función devuelve un iterador con todas las propiedades del objeto.
      *
      * Las claves tendrán el prefijo oi_.
      * Las propiedades públicas y privadas se añaden al final.

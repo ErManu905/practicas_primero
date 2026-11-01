@@ -30,7 +30,7 @@ class InstrumentoBase
 
 
     /**
-     * Devuelve la descripción del instrumento.
+     * Esta función devuelve la descripción del instrumento.
      *
      * @return string Descripción del instrumento.
      */
@@ -41,7 +41,7 @@ class InstrumentoBase
 
 
     /**
-     * Modifica la descripción del instrumento.
+     * Esta función modifica la descripción del instrumento.
      *
      * @param string $descripcion Nueva descripción.
      * @return void
@@ -53,7 +53,7 @@ class InstrumentoBase
 
 
     /**
-     * Devuelve la edad del instrumento.
+     * Esta función devuelve la edad del instrumento.
      *
      * @return int Edad del instrumento.
      */
@@ -64,7 +64,7 @@ class InstrumentoBase
 
 
     /**
-     * Aumenta la edad del instrumento en un año.
+     * Esta función aumenta la edad del instrumento en un año.
      *
      * @return void
      */
@@ -75,7 +75,7 @@ class InstrumentoBase
 
 
     /**
-     * Devuelve el sonido del instrumento.
+     * Esta función devuelve el sonido del instrumento.
      * Este método será abstracto en la versión definitiva.
      *
      * @return string Sonido del instrumento.
@@ -87,7 +87,7 @@ class InstrumentoBase
 
 
     /**
-     * Devuelve los pasos para afinar el instrumento.
+     * Esta función devuelve los pasos para afinar el instrumento.
      * Este método será abstracto en la versión definitiva.
      *
      * @return string Pasos para afinar el instrumento.
@@ -99,7 +99,7 @@ class InstrumentoBase
 
 
     /**
-     * Devuelve la información del instrumento al utilizar echo.
+     * Esta función devuelve la información del instrumento al utilizar echo.
      *
      * @return string Información del instrumento.
      */
@@ -114,7 +114,7 @@ class InstrumentoBase
 
 
     /**
-     * Impide consultar propiedades directamente desde el exterior.
+     * Esta función impide consultar propiedades directamente desde el exterior.
      *
      * @param string $nombre Nombre de la propiedad.
      * @return mixed
@@ -126,7 +126,7 @@ class InstrumentoBase
 
 
     /**
-     * Impide modificar propiedades directamente desde el exterior.
+     * Esta función impide modificar propiedades directamente desde el exterior.
      *
      * @param string $nombre Nombre de la propiedad.
      * @param mixed $valor Valor que se intenta asignar.

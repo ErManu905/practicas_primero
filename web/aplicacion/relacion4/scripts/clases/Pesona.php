@@ -28,7 +28,7 @@ class Persona
 
 
     /**
-     * Devuelve el nombre de la persona.
+     * Esta función devuelve el nombre de la persona.
      *
      * @return string Nombre de la persona.
      */
@@ -39,7 +39,7 @@ class Persona
 
 
     /**
-     * Modifica el nombre de la persona.
+     * Esta función modifica el nombre de la persona.
      *
      * @param string $nombre Nuevo nombre.
      * @return void
@@ -51,7 +51,7 @@ class Persona
 
 
     /**
-     * Devuelve la fecha de nacimiento.
+     * Esta función devuelve la fecha de nacimiento.
      *
      * @return string Fecha de nacimiento.
      */
@@ -62,7 +62,7 @@ class Persona
 
 
     /**
-     * Modifica la fecha de nacimiento.
+     * Esta función modifica la fecha de nacimiento.
      *
      * @param string $fecha_nacimiento Nueva fecha de nacimiento.
      * @return void
@@ -74,7 +74,7 @@ class Persona
 
 
     /**
-     * Devuelve el domicilio de la persona.
+     * Esta función devuelve el domicilio de la persona.
      *
      * @return string Domicilio de la persona.
      */
@@ -85,7 +85,7 @@ class Persona
 
 
     /**
-     * Modifica el domicilio de la persona.
+     * Esta función modifica el domicilio de la persona.
      *
      * @param string $domicilio Nuevo domicilio.
      * @return void
@@ -97,7 +97,7 @@ class Persona
 
 
     /**
-     * Devuelve la localidad de la persona.
+     * Esta función devuelve la localidad de la persona.
      *
      * @return string Localidad de la persona.
      */
@@ -108,7 +108,7 @@ class Persona
 
 
     /**
-     * Modifica la localidad de la persona.
+     * Esta función modifica la localidad de la persona.
      *
      * @param string $localidad Nueva localidad.
      * @return void
@@ -120,7 +120,7 @@ class Persona
 
 
     /**
-     * Devuelve el estado civil de la persona.
+     * Esta función devuelve el estado civil de la persona.
      *
      * @return EstadoCivil Estado civil.
      */
@@ -131,7 +131,7 @@ class Persona
 
 
     /**
-     * Modifica el estado civil de la persona.
+     * Esta función modifica el estado civil de la persona.
      *
      * @param EstadoCivil $estado Nuevo estado civil.
      * @return void
@@ -143,7 +143,7 @@ class Persona
 
 
     /**
-     * Crea una persona con los datos indicados.
+     * Esta función crea una persona con los datos indicados.
      *
      * @param string $nombre Nombre de la persona.
      * @param string $fecha_nacimiento Fecha de nacimiento.
@@ -172,7 +172,7 @@ class Persona
 
 
     /**
-     * Devuelve una descripción de la persona.
+     * Esta función devuelve una descripción de la persona.
      *
      * @return string Información de la persona.
      */

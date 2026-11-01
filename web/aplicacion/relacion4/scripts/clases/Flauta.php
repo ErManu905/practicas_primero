@@ -17,7 +17,7 @@ final class Flauta extends InstrumentoViento implements IFabricable
 
 
     /**
-     * Crea una flauta a partir de un array asociativo.
+     * Esta función crea una flauta a partir de un array asociativo.
      *
      * @param array $datos Datos de la flauta.
      * @return self Nueva instancia de Flauta.
@@ -32,7 +32,7 @@ final class Flauta extends InstrumentoViento implements IFabricable
 
 
     /**
-     * Devuelve el sonido producido por la flauta.
+     * Esta función devuelve el sonido producido por la flauta.
      *
      * @return string Sonido de la flauta.
      */
@@ -43,7 +43,7 @@ final class Flauta extends InstrumentoViento implements IFabricable
 
 
     /**
-     * Devuelve los pasos necesarios para fabricar la flauta.
+     * Esta función devuelve los pasos necesarios para fabricar la flauta.
      *
      * @return string Pasos de fabricación.
      */
@@ -55,7 +55,7 @@ final class Flauta extends InstrumentoViento implements IFabricable
 
 
     /**
-     * Devuelve el método de reciclado de la flauta.
+     * Esta función devuelve el método de reciclado de la flauta.
      *
      * @return string Método de reciclado.
      */
@@ -71,7 +71,7 @@ final class Flauta extends InstrumentoViento implements IFabricable
 
 
     /**
-     * Modifica los valores de la flauta después de clonarla.
+     * Esta función modifica los valores de la flauta después de clonarla.
      *
      * La nueva flauta comienza con edad 0 y recibe
      * un nuevo número de instancia.

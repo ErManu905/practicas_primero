@@ -20,7 +20,7 @@ abstract class InstrumentoViento extends InstrumentoBase
 
 
     /**
-     * Devuelve los pasos necesarios para afinar el instrumento.
+     * Esta función devuelve los pasos necesarios para afinar el instrumento.
      *
      * Este método no podrá redefinirse en las clases descendientes.
      *
@@ -33,7 +33,7 @@ abstract class InstrumentoViento extends InstrumentoBase
 
 
     /**
-     * Devuelve la información del instrumento de viento.
+     * Esta función devuelve la información del instrumento de viento.
      *
      * @return string Información del instrumento.
      */

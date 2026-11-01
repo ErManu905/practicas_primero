@@ -11,7 +11,7 @@ enum EstadoCivil: int
 
 
     /**
-     * Devuelve la descripción del estado civil.
+     * Esta función devuelve la descripción del estado civil.
      *
      * @return string Nombre del estado civil.
      */
@@ -22,7 +22,7 @@ enum EstadoCivil: int
 
 
     /**
-     * Devuelve el valor numérico del estado civil.
+     * Esta función devuelve el valor numérico del estado civil.
      *
      * @return int Valor del estado civil.
      */
@@ -33,7 +33,7 @@ enum EstadoCivil: int
 
 
     /**
-     * Devuelve un array con todos los casos de la enumeración.
+     * Esta función devuelve un array con todos los casos de la enumeración.
      *
      * @return array Casos de EstadoCivil.
      */

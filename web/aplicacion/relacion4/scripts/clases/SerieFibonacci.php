@@ -22,7 +22,7 @@ class SerieFibonacci implements Iterator
 
 
     /**
-     * Devuelve el valor actual de la serie.
+     * Esta función devuelve el valor actual de la serie.
      *
      * @return int Valor actual de Fibonacci.
      */
@@ -33,7 +33,7 @@ class SerieFibonacci implements Iterator
 
 
     /**
-     * Devuelve la posición actual de la serie.
+     * Esta función devuelve la posición actual de la serie.
      *
      * @return int Posición actual.
      */
@@ -44,7 +44,7 @@ class SerieFibonacci implements Iterator
 
 
     /**
-     * Avanza a la siguiente posición de la serie.
+     * Esta función avanza a la siguiente posición de la serie.
      *
      * @return void
      */
@@ -55,7 +55,7 @@ class SerieFibonacci implements Iterator
 
 
     /**
-     * Reinicia el recorrido de la serie.
+     * Esta función reinicia el recorrido de la serie.
      *
      * @return void
      */
@@ -66,7 +66,7 @@ class SerieFibonacci implements Iterator
 
 
     /**
-     * Comprueba si quedan valores por recorrer.
+     * Esta función comprueba si quedan valores por recorrer.
      *
      * @return bool True si quedan valores y false si ha terminado.
      */
@@ -77,7 +77,7 @@ class SerieFibonacci implements Iterator
 
 
     /**
-     * Calcula el valor de Fibonacci de una posición.
+     * Esta función calcula el valor de Fibonacci de una posición.
      *
      * @param int $posicion Posición que se quiere calcular.
      * @return int Resultado de Fibonacci.
@@ -107,7 +107,7 @@ class SerieFibonacci implements Iterator
 
 
     /**
-     * Genera la serie de Fibonacci utilizando un generador.
+     * Esta función genera la serie de Fibonacci utilizando un generador.
      *
      * @param int $ultimo Última posición de la serie.
      * @return Generator Generador con los valores de Fibonacci.
