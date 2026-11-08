@@ -1,15 +1,15 @@
 <?php
-// Cargamos el controlador y las vistas.
+// Se cargan el controlador y las vistas.
 require_once __DIR__ . '/controladores/controlador.php';
 require_once __DIR__ . '/vistas/formulario.php';
 require_once __DIR__ . '/vistas/resumen.php';
 
-// Inicializamos los valores del formulario.
+// Se inicializan los valores del formulario.
 $valores = obtenerValoresIniciales();
 $errores = [];
 $correcto = false;
 
-// Comprobamos si se ha enviado el formulario.
+// Se comprueba si se ha enviado el formulario.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Procesamos y validamos los datos recibidos.
