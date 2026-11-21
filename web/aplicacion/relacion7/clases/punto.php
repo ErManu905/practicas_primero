@@ -53,8 +53,6 @@ class Punto
         return true;
     }
 
-
-    // Métodos para el color.
     public function getColor() {return $this->color;}
     public function setColor($color) {
 
@@ -64,8 +62,6 @@ class Punto
         return true;
     }
 
-
-    // Métodos para el grosor.
     public function getGrosor() {return $this->grosor;}
     public function setGrosor($grosor) {
 

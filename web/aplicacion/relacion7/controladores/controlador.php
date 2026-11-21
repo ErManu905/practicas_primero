@@ -1,35 +1,19 @@
 <?php
 
-// Cargamos la clase Punto.
 require_once __DIR__ . "/../clases/punto.php";
 
-
-// Identificamos el navegador.
 function obtenerNavegadorR7()
 {
     $navegador = $_SERVER["HTTP_USER_AGENT"] ?? "";
 
-    if (strpos($navegador, "Edg") !== false) {
-        return "edge";
-    }
-
-    if (strpos($navegador, "Firefox") !== false) {
-        return "firefox";
-    }
-
-    if (strpos($navegador, "Chrome") !== false) {
-        return "chrome";
-    }
-
-    if (strpos($navegador, "Safari") !== false) {
-        return "safari";
-    }
+    if (strpos($navegador, "Edg") !== false) {return "edge";}
+    if (strpos($navegador, "Firefox") !== false) {return "firefox";}
+    if (strpos($navegador, "Chrome") !== false) {return "chrome";}
+    if (strpos($navegador, "Safari") !== false) {return "safari";}
 
     return "otro";
 }
 
-
-// Obtenemos un identificador para cada cliente.
 function obtenerIdentificadorClienteR7()
 {
     $ip = $_SERVER["REMOTE_ADDR"] ?? "desconocida";
@@ -38,72 +22,47 @@ function obtenerIdentificadorClienteR7()
     return $ip . "_" . obtenerNavegadorR7();
 }
 
-
-// Ruta del fichero de puntos.
 function obtenerRutaDatosR7()
 {
-    return __DIR__ . "/../datos/puntos_" .
-        obtenerIdentificadorClienteR7() . ".dat";
+    return __DIR__ . "/../datos/puntos_" .obtenerIdentificadorClienteR7() . ".dat";
 }
 
-
-// Ruta del fichero que indica que el cliente ya se inicializó.
 function obtenerRutaInicializacionR7()
 {
-    return __DIR__ . "/../datos/inicializado_" .
-        obtenerIdentificadorClienteR7() . ".txt";
+    return __DIR__ . "/../datos/inicializado_" .obtenerIdentificadorClienteR7() . ".txt";
 }
 
-
-// Ruta de la imagen guardada.
 function obtenerRutaImagenR7()
 {
-    return __DIR__ . "/../imagenes/puntos/imagen_" .
-        obtenerIdentificadorClienteR7() . ".jpg";
+    return __DIR__ . "/../imagenes/puntos/imagen_" .obtenerIdentificadorClienteR7() . ".jpg";
 }
 
-
-// Dirección de la imagen para mostrarla en HTML.
 function obtenerUrlImagenR7()
 {
-    return "imagenes/puntos/imagen_" .
-        obtenerIdentificadorClienteR7() . ".jpg";
+    return "imagenes/puntos/imagen_" .obtenerIdentificadorClienteR7() . ".jpg";
 }
 
-
-// Creamos las carpetas necesarias.
 function crearCarpetasR7()
 {
-    $carpetas = array(
-        __DIR__ . "/../datos",
-        __DIR__ . "/../imagenes/puntos"
-    );
+    $carpetas = array(__DIR__ . "/../datos",
+        __DIR__ . "/../imagenes/puntos");
 
     foreach ($carpetas as $carpeta) {
-
         if (!is_dir($carpeta)) {
-
-            if (!mkdir($carpeta, 0775, true) && !is_dir($carpeta)) {
-                return false;
-            }
+            if (!mkdir($carpeta, 0775, true) && !is_dir($carpeta)) {return false;}
         }
     }
 
     return true;
 }
 
-
-// Guardamos los puntos en el fichero DAT.
 function guardarPuntosR7($puntos)
 {
     $lineas = array();
 
     foreach ($puntos as $punto) {
-
-        $lineas[] = $punto->getX() . " ; " .
-            $punto->getY() . " ; " .
-            $punto->getColor() . " ; " .
-            $punto->getGrosor();
+        $lineas[] = $punto->getX() . " ; " . $punto->getY() . " ; " .
+            $punto->getColor() . " ; " . $punto->getGrosor();
     }
 
     $contenido = implode(PHP_EOL, $lineas);
@@ -115,15 +74,11 @@ function guardarPuntosR7($puntos)
     ) !== false;
 }
 
-
-// Convertimos una línea del fichero en un objeto Punto.
 function crearPuntoDesdeLineaR7($linea)
 {
     $datos = explode(";", $linea);
 
-    if (count($datos) != 4) {
-        return false;
-    }
+    if (count($datos) != 4) {return false;}
 
     $x = filter_var(trim($datos[0]), FILTER_VALIDATE_INT);
     $y = filter_var(trim($datos[1]), FILTER_VALIDATE_INT);
@@ -148,92 +103,58 @@ function crearPuntoDesdeLineaR7($linea)
     }
 }
 
-
-// Leemos todos los puntos del fichero.
 function leerPuntosR7()
 {
     $puntos = array();
     $ruta = obtenerRutaDatosR7();
 
-    if (!file_exists($ruta) || !is_readable($ruta)) {
-        return $puntos;
-    }
+    if (!file_exists($ruta) || !is_readable($ruta)) {return $puntos;}
 
-    $lineas = file(
-        $ruta,
-        FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES
-    );
+    $lineas = file($ruta, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
-    if ($lineas === false) {
-        return $puntos;
-    }
+    if ($lineas === false) {return $puntos;}
 
     foreach ($lineas as $linea) {
 
         $punto = crearPuntoDesdeLineaR7($linea);
 
-        if ($punto !== false) {
-            $puntos[] = $punto;
-        }
+        if ($punto !== false) {$puntos[] = $punto;}
     }
 
     return $puntos;
 }
 
-
-// Creamos y guardamos la imagen JPG.
 function actualizarImagenR7($puntos)
 {
-    if (!function_exists("imagecreatetruecolor")) {
-        return false;
-    }
+    if (!function_exists("imagecreatetruecolor")) {return false;}
 
     $imagen = imagecreatetruecolor(504, 504);
-
     $blanco = imagecolorallocate($imagen, 255, 255, 255);
     $negro = imagecolorallocate($imagen, 0, 0, 0);
 
-    // Fondo blanco y marco.
     imagefill($imagen, 0, 0, $blanco);
     imagerectangle($imagen, 0, 0, 503, 503, $negro);
 
-    // Dibujamos cada punto.
     foreach ($puntos as $punto) {
 
         $rgb = Punto::COLORES[$punto->getColor()]["rgb"];
 
-        $colorPunto = imagecolorallocate(
-            $imagen,
-            $rgb[0],
-            $rgb[1],
-            $rgb[2]
-        );
+        $colorPunto = imagecolorallocate($imagen, $rgb[0], $rgb[1], $rgb[2]);
 
         $tamano = $punto->getGrosor() * 3;
 
-        imagefilledellipse(
-            $imagen,
-            $punto->getX() + 2,
-            $punto->getY() + 2,
-            $tamano,
-            $tamano,
-            $colorPunto
+        imagefilledellipse($imagen, $punto->getX() + 2, $punto->getY() + 2, $tamano,
+            $tamano, $colorPunto
         );
     }
 
-    $resultado = imagejpeg(
-        $imagen,
-        obtenerRutaImagenR7(),
-        90
-    );
+    $resultado = imagejpeg($imagen, obtenerRutaImagenR7(), 90);
 
     imagedestroy($imagen);
 
     return $resultado;
 }
 
-
-// Preparamos los ficheros y los tres puntos iniciales.
 function inicializarR7()
 {
     if (!crearCarpetasR7()) {
@@ -246,20 +167,13 @@ function inicializarR7()
 
     $imagenDebeActualizarse = false;
 
-    // La primera vez creamos los tres puntos iniciales.
     if (!file_exists($rutaMarca)) {
-
         if (!file_exists($rutaDatos) || filesize($rutaDatos) == 0) {
 
-            $puntos = array(
-                new Punto(100, 100, "red", 1),
-                new Punto(250, 250, "blue", 2),
-                new Punto(400, 400, "green", 3)
-            );
+            $puntos = array(new Punto(100, 100, "red", 1),
+                new Punto(250, 250, "blue", 2), new Punto(400, 400, "green", 3));
 
-            if (!guardarPuntosR7($puntos)) {
-                return false;
-            }
+            if (!guardarPuntosR7($puntos)) {return false;}
 
             $imagenDebeActualizarse = true;
         }
@@ -267,48 +181,29 @@ function inicializarR7()
         file_put_contents($rutaMarca, "inicializado", LOCK_EX);
     }
 
-    // Creamos la imagen inicial o la actualizamos si es necesario.
-    if ($imagenDebeActualizarse || !file_exists($rutaImagen)) {
-        actualizarImagenR7(leerPuntosR7());
-    }
+    if ($imagenDebeActualizarse || !file_exists($rutaImagen)) {actualizarImagenR7(leerPuntosR7());}
 
     return true;
 }
 
-
-// Preparamos y validamos los datos recibidos.
 function prepararPagina($metodo, $post, $files)
 {
-    // Valores iniciales.
-    $datos["valores"] = array(
-        "x" => "",
-        "y" => "",
-        "color" => "",
-        "grosor" => ""
-    );
+    $datos["valores"] = array("x" => "",
+        "y" => "", "color" => "", "grosor" => "");
 
     $datos["errores"] = array();
     $datos["mensaje"] = "";
 
-    // Preparamos los ficheros.
-    if (!inicializarR7()) {
-        $datos["mensaje"] = "No se han podido preparar los ficheros.";
-    }
+    if (!inicializarR7()) {$datos["mensaje"] = "No se han podido preparar los ficheros.";}
 
-    // Cargamos los puntos existentes.
     $puntos = leerPuntosR7();
-
 
     if ($metodo == "POST") {
 
         $accion = "";
 
-        if (isset($post["accion"]) && is_string($post["accion"])) {
-            $accion = $post["accion"];
-        }
+        if (isset($post["accion"]) && is_string($post["accion"])) {$accion = $post["accion"];}
 
-
-        // GUARDAR UN PUNTO.
         if ($accion == "guardar") {
 
             $campos = array("x", "y", "color", "grosor");
@@ -325,46 +220,33 @@ function prepararPagina($metodo, $post, $files)
             $color = $datos["valores"]["color"];
             $grosor = filter_var($datos["valores"]["grosor"], FILTER_VALIDATE_INT);
 
-
-            // Validamos X.
             if ($datos["valores"]["x"] == "") {
                 $datos["errores"]["x"] = "Introduce la coordenada X.";
             } elseif ($x === false || $x < 0 || $x > 500) {
                 $datos["errores"]["x"] = "X debe ser un entero entre 0 y 500.";
             }
 
-
-            // Validamos Y.
             if ($datos["valores"]["y"] == "") {
                 $datos["errores"]["y"] = "Introduce la coordenada Y.";
             } elseif ($y === false || $y < 0 || $y > 500) {
                 $datos["errores"]["y"] = "Y debe ser un entero entre 0 y 500.";
             }
 
-
-            // Validamos el color.
             if ($color == "" || !array_key_exists($color, Punto::COLORES)) {
                 $datos["errores"]["color"] = "Selecciona un color válido.";
             }
 
-
-            // Validamos el grosor.
             if (
                 $datos["valores"]["grosor"] == "" ||
-                $grosor === false ||
-                !array_key_exists($grosor, Punto::GROSORES)
-            ) {
+                $grosor === false || !array_key_exists($grosor, Punto::GROSORES)) {
                 $datos["errores"]["grosor"] = "Selecciona un grosor válido.";
             }
 
-
-            // Si no hay errores, guardamos el punto.
             if (count($datos["errores"]) == 0) {
 
                 try {
 
                     $punto = new Punto($x, $y, $color, $grosor);
-
                     $puntos[] = $punto;
 
                     if (guardarPuntosR7($puntos)) {
@@ -376,12 +258,7 @@ function prepararPagina($metodo, $post, $files)
                         }
 
                         // Limpiamos el formulario.
-                        $datos["valores"] = array(
-                            "x" => "",
-                            "y" => "",
-                            "color" => "",
-                            "grosor" => ""
-                        );
+                        $datos["valores"] = array("x" => "", "y" => "", "color" => "", "grosor" => "");
 
                     } else {
                         $datos["mensaje"] = "No se ha podido guardar el punto.";
@@ -394,10 +271,7 @@ function prepararPagina($metodo, $post, $files)
             }
         }
 
-
-        // BORRAR UN PUNTO.
         elseif ($accion == "borrar") {
-
             $indice = false;
 
             if (isset($post["indice"]) && is_scalar($post["indice"])) {
@@ -405,9 +279,7 @@ function prepararPagina($metodo, $post, $files)
             }
 
             if ($indice === false || !isset($puntos[$indice])) {
-
                 $datos["mensaje"] = "Selecciona un punto válido.";
-
             } else {
 
                 array_splice($puntos, $indice, 1);
@@ -427,14 +299,9 @@ function prepararPagina($metodo, $post, $files)
             }
         }
 
-
-        // IMPORTAR PUNTOS DESDE UN TXT.
         elseif ($accion == "importar") {
 
-            if (
-                !isset($files["fichero"]) ||
-                $files["fichero"]["error"] != UPLOAD_ERR_OK
-            ) {
+            if (!isset($files["fichero"]) || $files["fichero"]["error"] != UPLOAD_ERR_OK) {
 
                 $datos["mensaje"] = "Selecciona un fichero TXT válido.";
 
@@ -512,23 +379,16 @@ function prepararPagina($metodo, $post, $files)
         }
     }
 
-
-    // Pasamos los puntos a la vista.
     $datos["puntos"] = $puntos;
 
-    // Preparamos el texto del resumen.
     $datos["texto_puntos"] = "";
 
     foreach ($puntos as $punto) {
 
-        $datos["texto_puntos"] .=
-            $punto->getX() . " ; " .
-            $punto->getY() . " ; " .
-            $punto->getColor() . " ; " .
-            $punto->getGrosor() . "\n";
+        $datos["texto_puntos"] .= $punto->getX() . " ; " . $punto->getY() . " ; " .
+            $punto->getColor() . " ; " . $punto->getGrosor() . "\n";
     }
 
-    // Pasamos la ruta de la imagen.
     $datos["ruta_imagen"] = obtenerUrlImagenR7();
 
     return $datos;
