@@ -14,6 +14,7 @@ function obtenerNavegadorR7()
     return "otro";
 }
 
+// Combina la dirección IP y el navegador del cliente.
 function obtenerIdentificadorClienteR7()
 {
     $ip = $_SERVER["REMOTE_ADDR"] ?? "desconocida";
@@ -22,26 +23,31 @@ function obtenerIdentificadorClienteR7()
     return $ip . "_" . obtenerNavegadorR7();
 }
 
+// Devuelve la ruta del fichero que contiene los puntos del cliente.
 function obtenerRutaDatosR7()
 {
     return __DIR__ . "/../datos/puntos_" .obtenerIdentificadorClienteR7() . ".dat";
 }
 
+// Fichero que indica si ya se crearon los puntos iniciales.
 function obtenerRutaInicializacionR7()
 {
     return __DIR__ . "/../datos/inicializado_" .obtenerIdentificadorClienteR7() . ".txt";
 }
 
+// Devuelve la ruta física de la imagen que se guarda en el servidor.
 function obtenerRutaImagenR7()
 {
     return __DIR__ . "/../imagenes/puntos/imagen_" .obtenerIdentificadorClienteR7() . ".jpg";
 }
 
+// Devuelve la ruta que utilizará la etiqueta img del navegador.
 function obtenerUrlImagenR7()
 {
     return "imagenes/puntos/imagen_" .obtenerIdentificadorClienteR7() . ".jpg";
 }
 
+// Crea las carpetas de datos e imágenes cuando todavía no existen.
 function crearCarpetasR7()
 {
     $carpetas = array(__DIR__ . "/../datos",
@@ -56,6 +62,7 @@ function crearCarpetasR7()
     return true;
 }
 
+// Guarda todos los puntos con el formato solicitado en el fichero DAT.
 function guardarPuntosR7($puntos)
 {
     $lineas = array();
@@ -74,6 +81,7 @@ function guardarPuntosR7($puntos)
     ) !== false;
 }
 
+// Convierte una línea del DAT o TXT en un objeto Punto válido.
 function crearPuntoDesdeLineaR7($linea)
 {
     $datos = explode(";", $linea);
@@ -103,6 +111,7 @@ function crearPuntoDesdeLineaR7($linea)
     }
 }
 
+// Lee el fichero del cliente y devuelve un array de objetos Punto.
 function leerPuntosR7()
 {
     $puntos = array();
@@ -124,6 +133,7 @@ function leerPuntosR7()
     return $puntos;
 }
 
+// Dibuja los puntos y guarda la imagen JPG en el servidor.
 function actualizarImagenR7($puntos)
 {
     if (!function_exists("imagecreatetruecolor")) {return false;}
@@ -155,6 +165,7 @@ function actualizarImagenR7($puntos)
     return $resultado;
 }
 
+// Prepara las carpetas, los tres puntos iniciales y la primera imagen.
 function inicializarR7()
 {
     if (!crearCarpetasR7()) {
@@ -178,7 +189,10 @@ function inicializarR7()
             $imagenDebeActualizarse = true;
         }
 
-        file_put_contents($rutaMarca, "inicializado", LOCK_EX);
+        // Guardamos la marca para no volver a crear los puntos iniciales.
+        if (file_put_contents($rutaMarca, "inicializado", LOCK_EX) === false) {
+            return false;
+        }
     }
 
     if ($imagenDebeActualizarse || !file_exists($rutaImagen)) {actualizarImagenR7(leerPuntosR7());}
@@ -186,6 +200,7 @@ function inicializarR7()
     return true;
 }
 
+// Procesa la petición y prepara todos los datos que necesitan las vistas.
 function prepararPagina($metodo, $post, $files)
 {
     $datos["valores"] = array("x" => "",
@@ -198,12 +213,14 @@ function prepararPagina($metodo, $post, $files)
 
     $puntos = leerPuntosR7();
 
+    // Solo procesamos acciones cuando se ha enviado un formulario.
     if ($metodo == "POST") {
 
         $accion = "";
 
         if (isset($post["accion"]) && is_string($post["accion"])) {$accion = $post["accion"];}
 
+        // Añadir un punto nuevo.
         if ($accion == "guardar") {
 
             $campos = array("x", "y", "color", "grosor");
@@ -271,6 +288,7 @@ function prepararPagina($metodo, $post, $files)
             }
         }
 
+        // Borrar el punto que se ha seleccionado.
         elseif ($accion == "borrar") {
             $indice = false;
 
@@ -299,9 +317,19 @@ function prepararPagina($metodo, $post, $files)
             }
         }
 
+        // Leer un TXT y añadir únicamente las líneas válidas.
         elseif ($accion == "importar") {
 
-            if (!isset($files["fichero"]) || $files["fichero"]["error"] != UPLOAD_ERR_OK) {
+            // Comprobamos que PHP ha recibido correctamente un archivo subido.
+            if (
+                !isset($files["fichero"]) ||
+                !is_array($files["fichero"]) ||
+                !isset($files["fichero"]["error"], $files["fichero"]["name"], $files["fichero"]["tmp_name"]) ||
+                $files["fichero"]["error"] != UPLOAD_ERR_OK ||
+                !is_string($files["fichero"]["name"]) ||
+                !is_string($files["fichero"]["tmp_name"]) ||
+                !is_uploaded_file($files["fichero"]["tmp_name"])
+            ) {
 
                 $datos["mensaje"] = "Selecciona un fichero TXT válido.";
 
@@ -314,7 +342,7 @@ function prepararPagina($metodo, $post, $files)
                     pathinfo($nombre, PATHINFO_EXTENSION)
                 );
 
-                if ($extension != "txt" || !is_uploaded_file($temporal)) {
+                if ($extension != "txt") {
 
                     $datos["mensaje"] = "El archivo debe ser un TXT válido.";
 
@@ -379,6 +407,7 @@ function prepararPagina($metodo, $post, $files)
         }
     }
 
+    // Pasamos los puntos, el texto y la imagen a las vistas.
     $datos["puntos"] = $puntos;
 
     $datos["texto_puntos"] = "";

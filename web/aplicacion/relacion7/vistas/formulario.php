@@ -6,19 +6,21 @@ function mostrarFormulario(array $datos): void
     $errores = $datos["errores"];
     $puntos = $datos["puntos"];
 
+    // Mostramos el resultado de la última operación, si existe.
     if ($datos["mensaje"] != "") {
         echo "<p>" . htmlspecialchars($datos["mensaje"], ENT_QUOTES, "UTF-8") . "</p>";
     }
 
 ?>
 
+<!-- Formulario para añadir un punto. -->
 <h2>Añadir un punto</h2>
 <form action="index.php" method="POST">
     <input type="hidden" name="accion" value="guardar">
     <fieldset>
         <legend>Coordenadas</legend>
         <label for="x">Coordenada X:</label>
-        <input type="number" name="x" id="x" step="any"
+        <input type="number" name="x" id="x" step="1"
             value="<?= htmlspecialchars((string) $valores["x"], ENT_QUOTES, "UTF-8") ?>">
 
         <?php if (isset($errores["x"])): ?>
@@ -28,7 +30,7 @@ function mostrarFormulario(array $datos): void
         <?php endif; ?>
 
         <label for="y">Coordenada Y:</label>
-        <input type="number" name="y" id="y" step="any"
+        <input type="number" name="y" id="y" step="1"
             value="<?= htmlspecialchars((string) $valores["y"], ENT_QUOTES, "UTF-8") ?>"
         >
 
@@ -108,6 +110,7 @@ function mostrarFormulario(array $datos): void
     <button type="submit">Guardar punto</button>
 </form>
 
+<!-- Formulario para borrar un punto existente. -->
 <h2>Borrar un punto</h2>
 <form action="index.php" method="POST">
     <input type="hidden" name="accion" value="borrar">
@@ -127,6 +130,7 @@ function mostrarFormulario(array $datos): void
     </button>
 </form>
 
+<!-- Formulario para importar puntos desde un fichero TXT. -->
 <h2>Importar puntos desde un TXT</h2>
 
 <form action="index.php" method="POST" enctype="multipart/form-data">

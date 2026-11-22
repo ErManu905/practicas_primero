@@ -1,6 +1,8 @@
 <?php
+
 class Punto
 {
+    // Colores y sus valores RGB.
     public const COLORES = array(
         "black" => array("nombre" => "Negro", "rgb" => array(0, 0, 0)),
         "red" => array("nombre" => "Rojo", "rgb" => array(255, 0, 0)),
@@ -9,13 +11,16 @@ class Punto
         "yellow" => array("nombre" => "Amarillo", "rgb" => array(255, 255, 0))
     );
 
+    // Grosores
     public const GROSORES = array(1 => "fino", 2 => "medio", 3 => "grueso");
 
+    // Datos privados del punto.
     private $x;
     private $y;
     private $color;
     private $grosor;
 
+    // Constructor
     public function __construct($x, $y, $color, $grosor)
     {
         if (!$this->setX($x)) {
@@ -35,6 +40,7 @@ class Punto
         }
     }
 
+    // Devuelve o modifica la coordenada X.
     public function getX() {return $this->x;}
     public function setX($x) {
 
@@ -44,6 +50,7 @@ class Punto
         return true;
     }
 
+    // Devuelve o modifica la coordenada Y.
     public function getY() {return $this->y;}
     public function setY($y) {
 
@@ -53,6 +60,7 @@ class Punto
         return true;
     }
 
+    // Devuelve o modifica el color.
     public function getColor() {return $this->color;}
     public function setColor($color) {
 
@@ -62,6 +70,7 @@ class Punto
         return true;
     }
 
+    // Devuelve o modifica el grosor.
     public function getGrosor() {return $this->grosor;}
     public function setGrosor($grosor) {
 

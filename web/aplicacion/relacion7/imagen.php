@@ -6,8 +6,10 @@ if (!function_exists("imagecreatetruecolor")) {
     exit("La librería GD no está disponible.");
 }
 
+// Obtenemos el fichero de puntos del cliente.
 $rutaFichero = obtenerRutaDatosR7();
 
+// Creamos una imagen nueva de 504 por 504 píxeles.
 $imagen = imagecreatetruecolor(504, 504);
 
 $blanco = imagecolorallocate($imagen, 255, 255, 255);
@@ -18,6 +20,7 @@ imagefill($imagen, 0, 0, $blanco);
 imagerectangle($imagen, 0, 0, 503, 503, $negro);
 
 
+// Leemos los puntos guardados y los dibujamos en la imagen.
 if (file_exists($rutaFichero)) {
     $lineas = file(
         $rutaFichero,
@@ -52,9 +55,11 @@ if (file_exists($rutaFichero)) {
     }
 }
 
+// Indicamos al navegador que la respuesta será una descarga JPG.
 header("Content-Type: image/jpeg");
 header('Content-Disposition: attachment; filename="puntos.jpg"');
 
+// Enviamos la imagen y liberamos la memoria utilizada por GD.
 imagejpeg($imagen, null, 90);
 
 imagedestroy($imagen);
